@@ -20,6 +20,46 @@ public class ManagerTicketTests {
 
 
     @Test
+    public void shouldFindByFromToTimeAscSome() {
+
+        manager.add(ticket1);
+        manager.add(ticket2);
+        manager.add(ticket3);
+        manager.add(ticket5);
+
+        Ticket[] expected = {ticket5, ticket1, ticket3};
+        TicketByTimeAscComparator timeAscComparator = new TicketByTimeAscComparator();
+        Ticket[] actual = manager.findAll("LED", "KRD", timeAscComparator);
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldFindByFromToTimeAscIfOne() {
+
+        manager.add(ticket1);
+
+        Ticket[] expected = {ticket1};
+        TicketByTimeAscComparator timeAscComparator = new TicketByTimeAscComparator();
+        Ticket[] actual = manager.findAll("LED", "KRD", timeAscComparator);
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+    @Test
+    public void shouldFindByFromToTimeAscIfEmpty() {
+
+        Ticket[] expected = {};
+        TicketByTimeAscComparator timeAscComparator = new TicketByTimeAscComparator();
+        Ticket[] actual = manager.findAll("LED", "KRD", timeAscComparator);
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+
+    @Test
     public void shouldFindByFromToSome() {
 
         manager.add(ticket1);
